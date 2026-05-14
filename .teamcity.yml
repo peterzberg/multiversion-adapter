@@ -1,0 +1,24 @@
+jobs:
+  Job1:
+    name: clean
+    steps:
+      - type: maven
+        name: clean
+        goals: clean
+    dependencies:
+      - Job1_3
+  Job1_2:
+    name: verify
+    dependencies:
+      - Job1
+    steps:
+      - type: maven
+        name: verify
+        goals: verify
+  Job1_3:
+    name: Echo
+    steps:
+      - type: script
+        script-content: |-
+          echo "i am doing something"
+          echo "i am doing other stuff"
